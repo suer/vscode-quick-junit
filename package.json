@@ -21,6 +21,14 @@
         "command": "vscode-quick-junit.helloWorld",
         "title": "Hello World"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "testing.runAtCursor",
+        "key": "ctrl+0",
+        "mac": "cmd+0",
+        "when": "editorTextFocus"
+      }
     ]
   },
   "scripts": {
