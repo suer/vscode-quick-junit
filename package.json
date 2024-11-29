@@ -18,11 +18,17 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-quick-junit.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-quick-junit.toggleTestFile",
+        "title": "Toggle Test File"
       }
     ],
     "keybindings": [
+      {
+        "command": "vscode-quick-junit.toggleTestFile",
+        "key": "ctrl+9",
+        "mac": "cmd+9",
+        "when": "editorTextFocus"
+      },
       {
         "command": "testing.runAtCursor",
         "key": "ctrl+0",
