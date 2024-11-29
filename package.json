@@ -1,6 +1,6 @@
 {
   "name": "vscode-quick-junit",
-  "displayName": "vscode-quick-junit",
+  "displayName": "Quick JUnit",
   "description": "Quick JUnit clone for Visual Studio Code",
   "version": "0.0.1",
   "engines": {
