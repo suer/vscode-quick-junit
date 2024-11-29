@@ -9,6 +9,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suer/vscode-quick-junit"
+  },
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
