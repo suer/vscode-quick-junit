@@ -1,0 +1,12 @@
+{
+  "JUnit test method": {
+    "prefix": "Q",
+    "body": [
+      "@Test",
+      "public void ${1:test}() throws Exception {",
+      "    ${2}",
+      "}"
+    ],
+    "description": "JUnit test method"
+  }
+}

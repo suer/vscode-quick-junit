@@ -40,8 +40,15 @@
         "mac": "cmd+0",
         "when": "editorTextFocus"
       }
+    ],
+    "snippets": [
+      {
+        "language": "java",
+        "path": "./snippets/java.json"
+      }
     ]
   },
+  
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
