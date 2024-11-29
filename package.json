@@ -16,6 +16,7 @@
   "extensionDependencies": [
     "vscjava.vscode-java-test"
   ],
+  "icon": "images/icon.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
