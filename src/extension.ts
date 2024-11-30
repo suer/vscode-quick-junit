@@ -25,11 +25,30 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    const document = await vscode.workspace.openTextDocument(files[0]);
-    await vscode.window.showTextDocument(document);
+    if (files.length === 1) {
+      const document = await vscode.workspace.openTextDocument(files[0]);
+      await vscode.window.showTextDocument(document);
+      return;
+    }
+
+    const currentPackage = getPackage(editor.document);
+    for (const file of files) {
+      const document = await vscode.workspace.openTextDocument(file);
+      const candidateFilePackage = getPackage(document);
+      if (currentPackage === candidateFilePackage) {
+        await vscode.window.showTextDocument(document);
+        return;
+      }
+    }
   });
 
   context.subscriptions.push(disposable);
+}
+
+function getPackage(document: vscode.TextDocument): string{
+  const src = document.getText();
+  const match = src.match(/package\s+([a-z.]+)\s*;/);
+  return match ? match[1] : '';
 }
 
 export function deactivate() {}
