@@ -18,7 +18,5 @@ jobs:
         cache: 'npm'
     - name: Run npm install
       run: npm ci
-    - name: Run headless test
-      uses: coactions/setup-xvfb@v1
-      with:
-        run: npm test
+    - name: Run test
+      run: xvfb-run npm test
