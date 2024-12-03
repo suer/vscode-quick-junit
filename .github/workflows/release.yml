@@ -25,7 +25,8 @@ jobs:
       id: get_tag
       run: echo "TAG_NAME=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
     - name: Set version
-      run: sed -i "s/\"version\": \".*\"/\"version\": \"$TAG_NAME\"/" package.json
+      run: |
+        sed -i "s/\"version\": \".*\"/\"version\": \"$TAG_NAME\"/" package.json
     - name: Package
       run: npx vsce package
     - name: Delete release if exists
