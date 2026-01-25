@@ -3,7 +3,7 @@
     "prefix": "Q",
     "body": [
       "@Test",
-      "public void ${1:test}() throws Exception {",
+      "void ${1:test}() throws Exception {",
       "    ${2}",
       "}"
     ],
