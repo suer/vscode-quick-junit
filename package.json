@@ -57,6 +57,9 @@
     "lint": "eslint src",
     "test": "vscode-test"
   },
+  "overrides": {
+    "serialize-javascript": "7.0.5"
+  },
   "devDependencies": {
     "@types/mocha": "^10.0.9",
     "@types/node": "20.x",
