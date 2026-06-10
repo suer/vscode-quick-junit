@@ -2,9 +2,6 @@ import * as vscode from 'vscode';
 import { basename } from 'path';
 
 export function activate(context: vscode.ExtensionContext) {
-
-  console.log('Congratulations, your extension "vscode-quick-junit" is now active!');
-
   const disposable = vscode.commands.registerCommand('vscode-quick-junit.toggleTestFile', async () => {
     const editor = vscode.window.activeTextEditor;
     if (!editor) {
