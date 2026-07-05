@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { basename } from 'path';
+import { toggleFileName, extractPackage } from './logic';
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand('vscode-quick-junit.toggleTestFile', async () => {
@@ -10,12 +11,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     const currentFileName = basename(editor.document.uri.fsPath);
-    let targetFileName = null;
-    if (currentFileName.endsWith('Test.java')) {
-      targetFileName = currentFileName.replace(/Test\.java$/, '.java');
-    } else {
-      targetFileName = currentFileName.replace(/\.java$/, 'Test.java');
-    }
+    const targetFileName = toggleFileName(currentFileName);
 
     const files = await vscode.workspace.findFiles(`**/${targetFileName}`);
     if (files.length === 0) {
@@ -28,11 +24,11 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    const currentPackage = getPackage(editor.document);
+    const currentPackage = extractPackage(editor.document.getText());
     for (const file of files) {
       const document = await vscode.workspace.openTextDocument(file);
-      const candidateFilePackage = getPackage(document);
-      if (currentPackage === candidateFilePackage) {
+      const candidatePackage = extractPackage(document.getText());
+      if (currentPackage === candidatePackage) {
         await vscode.window.showTextDocument(document);
         return;
       }
@@ -40,12 +36,6 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   context.subscriptions.push(disposable);
-}
-
-function getPackage(document: vscode.TextDocument): string{
-  const src = document.getText();
-  const match = src.match(/package\s+([a-z.]+)\s*;/);
-  return match ? match[1] : '';
 }
 
 export function deactivate() {}
