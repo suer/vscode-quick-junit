@@ -1,15 +1,28 @@
 import * as assert from 'assert';
+import { toggleFileName, extractPackage } from '../logic';
 
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
-import * as vscode from 'vscode';
-// import * as myExtension from '../../extension';
+suite('toggleFileName', () => {
+	test('converts a production file name to its test file name', () => {
+		assert.strictEqual(toggleFileName('Foo.java'), 'FooTest.java');
+	});
 
-suite('Extension Test Suite', () => {
-	vscode.window.showInformationMessage('Start all tests.');
+	test('converts a test file name back to its production file name', () => {
+		assert.strictEqual(toggleFileName('FooTest.java'), 'Foo.java');
+	});
 
-	test('Sample test', () => {
-		assert.strictEqual(-1, [1, 2, 3].indexOf(5));
-		assert.strictEqual(-1, [1, 2, 3].indexOf(0));
+	test('leaves non-.java file names unchanged', () => {
+		assert.strictEqual(toggleFileName('Foo.txt'), 'Foo.txt');
+	});
+});
+
+suite('extractPackage', () => {
+	test('extracts the package name from a source file', () => {
+		const source = 'package com.example.app;\n\npublic class Foo {}\n';
+		assert.strictEqual(extractPackage(source), 'com.example.app');
+	});
+
+	test('returns an empty string when there is no package declaration', () => {
+		const source = 'public class Foo {}\n';
+		assert.strictEqual(extractPackage(source), '');
 	});
 });
